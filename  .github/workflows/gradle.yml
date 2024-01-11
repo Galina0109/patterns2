@@ -16,8 +16,6 @@ jobs:
           distribution: 'adopt'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Grant execute permission
-        run: java -jar app-ibank.jar -P:profile=test &
       - name: Start SUT
         # Запускаем SUT,
         # имя файла SUT будет отличаться в каждой задаче.
