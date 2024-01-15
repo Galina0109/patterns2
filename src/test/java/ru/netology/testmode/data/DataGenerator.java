@@ -10,7 +10,6 @@ import lombok.Value;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
-import static org.graalvm.compiler.options.OptionType.User;
 
 
 public class DataGenerator {
@@ -27,7 +26,7 @@ public class DataGenerator {
     }
 
     private static RegistrationDto sendRequest(RegistrationDto user) {
-        given() //
+        given()
                 .spec(requestSpec)
                 .body(new RegistrationDto("vasya", "password", "active"))
                 .when()
