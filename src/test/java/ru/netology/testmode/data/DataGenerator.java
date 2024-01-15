@@ -27,11 +27,11 @@ public class DataGenerator {
     }
 
     private static RegistrationDto sendRequest(RegistrationDto user) {
-        given()
+        given() //
                 .spec(requestSpec)
                 .body(new RegistrationDto("vasya", "password", "active"))
                 .when()
-                .post("api/system/users")
+                .post("/api/system/users")
                 .then()
                 .statusCode(200);
         return user;
@@ -50,11 +50,11 @@ public class DataGenerator {
         }
 
         public static RegistrationDto getUser(String status) {
-            return new RegistrationDto(getRandomLogin(), getRandomPassword(),status);
+            return new RegistrationDto(getRandomLogin(), getRandomPassword(), status);
         }
 
         public static RegistrationDto getRegisteredUser(String status) {
-          return sendRequest(getUser(status));
+            return sendRequest(getUser(status));
         }
     }
 
