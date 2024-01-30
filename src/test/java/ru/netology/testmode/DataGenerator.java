@@ -1,4 +1,4 @@
-package ru.netology.testmode.data;
+package ru.netology.testmode;
 
 import com.github.javafaker.Faker;
 import io.restassured.builder.RequestSpecBuilder;
@@ -37,6 +37,7 @@ public class DataGenerator {
     }
 
     public static String getRandomLogin() {
+
         return faker.name().username();
     }
 
@@ -53,7 +54,7 @@ public class DataGenerator {
         }
 
         public static RegistrationDto getRegisteredUser(String status) {
-            return sendRequest(getUser(status));
+            return  sendRequest(getUser(status));
         }
     }
 

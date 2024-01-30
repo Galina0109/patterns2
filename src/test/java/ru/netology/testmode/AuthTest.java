@@ -1,19 +1,18 @@
-package ru.netology.testmode.test;
+package ru.netology.testmode;
 
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.codeborne.selenide.Condition;
 
 import java.time.Duration;
 
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static ru.netology.testmode.data.DataGenerator.Registration.getRegisteredUser;
-import static ru.netology.testmode.data.DataGenerator.Registration.getUser;
-import static ru.netology.testmode.data.DataGenerator.getRandomLogin;
-import static ru.netology.testmode.data.DataGenerator.getRandomPassword;
+import static ru.netology.testmode.DataGenerator.Registration.getRegisteredUser;
+import static ru.netology.testmode.DataGenerator.Registration.getUser;
+import static ru.netology.testmode.DataGenerator.getRandomLogin;
+import static ru.netology.testmode.DataGenerator.getRandomPassword;
 
 class AuthTest {
 
@@ -44,6 +43,7 @@ class AuthTest {
                 .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"), Duration.ofSeconds(10))
                 .shouldBe(Condition.visible);
     }
+
     @Test
     @DisplayName("Should get error message if login with blocked registered user")
     void shouldGetErrorIfBlockedUser() {
@@ -52,7 +52,8 @@ class AuthTest {
         $("[data-test-id='password'] input").setValue(blockedUser.getPassword());
         $("button.button").click();
         $("[data-test-id='error-notification'] .notification__content")
-                .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"), Duration.ofSeconds(10))                .shouldBe(Condition.visible);
+                .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"), Duration.ofSeconds(10))
+                .shouldBe(Condition.visible);
     }
 
     @Test
